@@ -38,7 +38,7 @@ class Product {
       discountedPrice: json['discounted_price'] != null ? (json['discounted_price']).toDouble() : null,
       discountPercent: json['discount_percent'],
       isInStock: json['is_in_stock'] ?? true,
-      image: json['image'],
+      image: json['image'] != null ? _fullUrl(json['image']) : null,
       category: json['category'],
       brand: json['brand'],
       rating: json['rating'] != null ? (json['rating']).toDouble() : null,
@@ -49,4 +49,10 @@ class Product {
 
   double get displayPrice => discountedPrice ?? price;
   bool get hasDiscount => discountedPrice != null && discountedPrice! < price;
+
+  static String _fullUrl(String path) {
+    if (path.startsWith('http')) return path;
+    final clean = path.replaceAll(RegExp(r'/+'), '/');
+    return 'https://www.offroad.ist$clean';
+  }
 }
