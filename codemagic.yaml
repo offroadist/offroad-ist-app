@@ -9,19 +9,10 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.offroad.offroadist
     scripts:
-      - name: Set up keychain
-        script: |
-          keychain initialize
-          echo "$CM_CERTIFICATE" | base64 --decode > /tmp/cert.p12
-          keychain add-certificates --certificate /tmp/cert.p12 --certificate-password "$CM_CERTIFICATE_PASSWORD"
-          rm /tmp/cert.p12
-      - name: Set up provisioning profile
-        script: |
-          PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
-          mkdir -p "$PROFILES_HOME"
-          echo "$CM_PROVISIONING_PROFILE" | base64 --decode > "$PROFILES_HOME/profile.mobileprovision"
-          echo "Profile installed."
       - name: Flutter pub get
         script: flutter pub get
       - name: Fix bundle ID in Xcode project
