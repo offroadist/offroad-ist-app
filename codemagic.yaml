@@ -6,8 +6,6 @@ workflows:
     integrations:
       app_store_connect: Codemagic iOS
     environment:
-      groups:
-        - offroad_ios
       flutter: stable
       xcode: latest
       cocoapods: default
