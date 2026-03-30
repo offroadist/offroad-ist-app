@@ -13,7 +13,6 @@ dependencies:
   dio: ^5.4.0
   flutter_secure_storage: ^9.2.2
   cached_network_image: ^3.3.1
-  carousel_slider: ^4.2.1
   flutter_rating_bar: ^4.0.1
   shared_preferences: ^2.3.0
   url_launcher: ^6.3.0

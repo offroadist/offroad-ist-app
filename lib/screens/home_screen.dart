@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import '../services/api_service.dart';
 import '../models/product.dart';
 import '../models/category.dart';
@@ -95,26 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Sliders
             if (_sliders.isNotEmpty)
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: CarouselSlider(
-                    options: CarouselOptions(height: 180, autoPlay: true, viewportFraction: 0.92, enlargeCenterPage: true),
-                    items: _sliders.map((s) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: CachedNetworkImage(
-                          imageUrl: s['image'] ?? '',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          errorWidget: (_, __, ___) => Container(
-                            color: const Color(0xFF1B5E20),
-                            child: const Center(child: Icon(Icons.terrain, color: Colors.white, size: 48)),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
+                child: _SliderBanner(sliders: _sliders),
               ),
 
             // Categories
@@ -215,6 +195,84 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ],
       ),
+    );
+  }
+}
+
+class _SliderBanner extends StatefulWidget {
+  final List<dynamic> sliders;
+  const _SliderBanner({required this.sliders});
+
+  @override
+  State<_SliderBanner> createState() => _SliderBannerState();
+}
+
+class _SliderBannerState extends State<_SliderBanner> {
+  final PageController _pageController = PageController(viewportFraction: 0.92);
+  int _current = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), _autoScroll);
+  }
+
+  void _autoScroll() {
+    if (!mounted) return;
+    final next = (_current + 1) % widget.sliders.length;
+    _pageController.animateToPage(next, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+    Future.delayed(const Duration(seconds: 3), _autoScroll);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 180,
+          child: PageView.builder(
+            controller: _pageController,
+            itemCount: widget.sliders.length,
+            onPageChanged: (i) => setState(() => _current = i),
+            itemBuilder: (_, i) {
+              final s = widget.sliders[i];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CachedNetworkImage(
+                    imageUrl: s['image'] ?? '',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    errorWidget: (_, __, ___) => Container(
+                      color: const Color(0xFF1B5E20),
+                      child: const Center(child: Icon(Icons.terrain, color: Colors.white, size: 48)),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(widget.sliders.length, (i) => Container(
+            width: _current == i ? 16 : 6,
+            height: 6,
+            margin: const EdgeInsets.symmetric(horizontal: 2),
+            decoration: BoxDecoration(
+              color: _current == i ? const Color(0xFF1B5E20) : Colors.grey[300],
+              borderRadius: BorderRadius.circular(3),
+            ),
+          )),
+        ),
+      ],
     );
   }
 }
