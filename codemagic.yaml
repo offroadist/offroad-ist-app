@@ -33,3 +33,36 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+
+  android-release:
+    name: Android Build
+    max_build_duration: 60
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+    scripts:
+      - name: Flutter pub get
+        script: flutter pub get
+      - name: Generate keystore
+        script: |
+          KEYSTORE_PATH=$CM_BUILD_DIR/offroad_keystore.jks
+          keytool -genkey -v \
+            -keystore "$KEYSTORE_PATH" \
+            -alias offroad \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass Batu329388x \
+            -keypass Batu329388x \
+            -dname "CN=OffRoad.ist, O=Offroadist, L=Istanbul, ST=Istanbul, C=TR"
+          echo "Keystore generated at $KEYSTORE_PATH"
+      - name: Build AAB
+        script: |
+          export CM_KEYSTORE_PATH=$CM_BUILD_DIR/offroad_keystore.jks
+          export CM_KEY_ALIAS=offroad
+          export CM_KEY_PASSWORD=Batu329388x
+          export CM_STORE_PASSWORD=Batu329388x
+          flutter build appbundle --release
+    artifacts:
+      - build/app/outputs/bundle/release/*.aab
+      - $CM_BUILD_DIR/offroad_keystore.jks
