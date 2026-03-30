@@ -84,7 +84,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text('${o['items_count'] ?? ''} ürün', style: TextStyle(color: Colors.grey[600])),
-                            Text('₺${o['total'] ?? 0}', style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1B5E20))),
+                            Text('₺${o['total'] ?? 0}', style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0EA5E9))),
                           ],
                         ),
                       ),

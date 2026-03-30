@@ -45,7 +45,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         }
       } else if (data['order_id'] != null) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sipariş oluşturuldu!'), backgroundColor: Color(0xFF1B5E20)));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sipariş oluşturuldu!'), backgroundColor: Color(0xFF0EA5E9)));
           Navigator.pop(context, true);
         }
       }
@@ -76,7 +76,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         onChanged: (v) => setState(() => _selectedAddressId = v),
                         title: Text(a['title'] ?? 'Adres'),
                         subtitle: Text('${a['address'] ?? ''}, ${a['city'] ?? ''}'),
-                        activeColor: const Color(0xFF1B5E20),
+                        activeColor: const Color(0xFF0EA5E9),
                       );
                     }),
                     const SizedBox(height: 16),
@@ -100,7 +100,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text('Toplam', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                        Text('₺${_checkout!['total'] ?? 0}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF1B5E20))),
+                        Text('₺${_checkout!['total'] ?? 0}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF0EA5E9))),
                       ],
                     ),
                     const SizedBox(height: 24),

@@ -43,9 +43,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               const SizedBox(height: 24),
-              const Icon(Icons.terrain, size: 64, color: Color(0xFF1B5E20)),
+              const Icon(Icons.terrain, size: 64, color: Color(0xFF0EA5E9)),
               const SizedBox(height: 8),
-              const Text('OffRoad.ist', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF1B5E20))),
+              const Text('OffRoad.ist', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0EA5E9))),
               const SizedBox(height: 32),
               TextFormField(
                 controller: _emailCtrl,

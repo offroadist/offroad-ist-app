@@ -7,7 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
   ));
   runApp(const OffroadApp());
 }
@@ -22,19 +22,19 @@ class OffroadApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1B5E20),
-          primary: const Color(0xFF1B5E20),
-          secondary: const Color(0xFFFF6F00),
+          seedColor: const Color(0xFF0EA5E9),
+          primary: const Color(0xFF0EA5E9),
+          secondary: const Color(0xFFF59E0B),
         ),
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF1B5E20),
+          backgroundColor: Color(0xFF0284C7),
           foregroundColor: Colors.white,
           elevation: 0,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF1B5E20),
+            backgroundColor: const Color(0xFF0EA5E9),
             foregroundColor: Colors.white,
             minimumSize: const Size.fromHeight(48),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -66,15 +66,29 @@ class _AppEntryState extends State<AppEntry> {
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return const Scaffold(
-        backgroundColor: Color(0xFF1B5E20),
+      return Scaffold(
+        backgroundColor: const Color(0xFF0284C7),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.terrain, size: 80, color: Colors.white),
-              SizedBox(height: 16),
-              Text('OffRoad.ist', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold)),
+              Image.network(
+                'https://www.offroad.ist/offroad-ist.webp',
+                height: 60,
+                color: Colors.white,
+                colorBlendMode: BlendMode.srcIn,
+                errorBuilder: (_, __, ___) => const Icon(Icons.terrain, size: 80, color: Colors.white),
+              ),
+              const SizedBox(height: 24),
+              const Text(
+                'OffRoad.ist',
+                style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold, letterSpacing: 1.2),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Offroad Aksesuar Pazaryeri',
+                style: TextStyle(color: Colors.white70, fontSize: 14),
+              ),
             ],
           ),
         ),

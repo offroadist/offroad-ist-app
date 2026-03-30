@@ -51,7 +51,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           : null;
       await ApiService.addToCart(p['id'], quantity: _qty, variantId: variantId);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sepete eklendi'), backgroundColor: Color(0xFF1B5E20)));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sepete eklendi'), backgroundColor: Color(0xFF0EA5E9)));
       }
     } catch (_) {
       if (mounted) {
@@ -99,7 +99,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (p['brand'] != null)
-                    Text(p['brand'], style: const TextStyle(color: Color(0xFF1B5E20), fontWeight: FontWeight.w500)),
+                    Text(p['brand'], style: const TextStyle(color: Color(0xFF0EA5E9), fontWeight: FontWeight.w500)),
                   const SizedBox(height: 4),
                   Text(p['name'] ?? '', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 8),
@@ -146,7 +146,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           label: Text(v['name'] ?? ''),
                           selected: selected,
                           onSelected: (_) => setState(() => _selectedVariant = i),
-                          selectedColor: const Color(0xFF1B5E20),
+                          selectedColor: const Color(0xFF0EA5E9),
                           labelStyle: TextStyle(color: selected ? Colors.white : null),
                         );
                       }),

@@ -43,11 +43,11 @@ class _AddressesScreenState extends State<AddressesScreen> {
                     return Card(
                       margin: const EdgeInsets.only(bottom: 8),
                       child: ListTile(
-                        leading: const Icon(Icons.location_on, color: Color(0xFF1B5E20)),
+                        leading: const Icon(Icons.location_on, color: Color(0xFF0EA5E9)),
                         title: Text(a['title'] ?? a['name'] ?? 'Adres ${i + 1}', style: const TextStyle(fontWeight: FontWeight.bold)),
                         subtitle: Text('${a['address'] ?? ''}\n${a['city'] ?? ''} ${a['district'] ?? ''}'),
                         isThreeLine: true,
-                        trailing: a['is_default'] == true ? const Icon(Icons.check_circle, color: Color(0xFF1B5E20)) : null,
+                        trailing: a['is_default'] == true ? const Icon(Icons.check_circle, color: Color(0xFF0EA5E9)) : null,
                       ),
                     );
                   },

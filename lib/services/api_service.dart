@@ -53,7 +53,7 @@ class ApiService {
   }
 
   static Future<Map<String, dynamic>> searchProducts(String q, {int page = 1}) async {
-    final res = await _dio.get('/products/search', queryParameters: {'q': q, 'page': page});
+    final res = await _dio.get('/products', queryParameters: {'search': q, 'page': page});
     return res.data;
   }
 

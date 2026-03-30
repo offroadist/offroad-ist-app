@@ -32,10 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
       final data = await ApiService.getHome();
       setState(() {
         _sliders = data['sliders'] ?? [];
-        _categories = (data['categories']['data'] as List)
+        _categories = (data['categories'] as List)
             .map((c) => Category.fromJson(c))
             .toList();
-        _latestProducts = (data['latest_products']['data'] as List)
+        _latestProducts = (data['latest_products'] as List)
             .map((p) => Product.fromJson(p))
             .toList();
         _loading = false;
@@ -58,13 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
             expandedHeight: 60,
             floating: true,
             pinned: true,
-            backgroundColor: const Color(0xFF1B5E20),
-            title: Row(
-              children: [
-                const Icon(Icons.terrain, color: Colors.white),
-                const SizedBox(width: 8),
-                const Text('OffRoad.ist', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-              ],
+            backgroundColor: const Color(0xFF0EA5E9),
+            title: Image.network(
+              'https://www.offroad.ist/offroad-ist.webp',
+              height: 32,
+              color: Colors.white,
+              colorBlendMode: BlendMode.srcIn,
+              errorBuilder: (_, __, ___) => const Text('OffRoad.ist', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             ),
             actions: [
               IconButton(
@@ -144,10 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? ClipRRect(
                                       borderRadius: BorderRadius.circular(12),
                                       child: CachedNetworkImage(imageUrl: cat.image!, fit: BoxFit.cover,
-                                        errorWidget: (_, __, ___) => const Icon(Icons.category, color: Color(0xFF1B5E20)),
+                                        errorWidget: (_, __, ___) => const Icon(Icons.category, color: Color(0xFF0EA5E9)),
                                       ),
                                     )
-                                  : const Icon(Icons.category, color: Color(0xFF1B5E20)),
+                                  : const Icon(Icons.category, color: Color(0xFF0EA5E9)),
                             ),
                             const SizedBox(height: 4),
                             Text(cat.name, style: const TextStyle(fontSize: 11), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
@@ -251,7 +251,7 @@ class _SliderBannerState extends State<_SliderBanner> {
                     fit: BoxFit.cover,
                     width: double.infinity,
                     errorWidget: (_, __, ___) => Container(
-                      color: const Color(0xFF1B5E20),
+                      color: const Color(0xFF0EA5E9),
                       child: const Center(child: Icon(Icons.terrain, color: Colors.white, size: 48)),
                     ),
                   ),
@@ -267,7 +267,7 @@ class _SliderBannerState extends State<_SliderBanner> {
             height: 6,
             margin: const EdgeInsets.symmetric(horizontal: 2),
             decoration: BoxDecoration(
-              color: _current == i ? const Color(0xFF1B5E20) : Colors.grey[300],
+              color: _current == i ? const Color(0xFF0EA5E9) : Colors.grey[300],
               borderRadius: BorderRadius.circular(3),
             ),
           )),

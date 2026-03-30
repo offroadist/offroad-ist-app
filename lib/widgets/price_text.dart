@@ -16,11 +16,11 @@ class PriceText extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(_format(discountedPrice!), style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xFF1B5E20))),
+          Text(_format(discountedPrice!), style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xFF0EA5E9))),
           Text(_format(price), style: TextStyle(fontSize: fontSize - 2, color: Colors.grey, decoration: TextDecoration.lineThrough)),
         ],
       );
     }
-    return Text(_format(price), style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xFF1B5E20)));
+    return Text(_format(price), style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xFF0EA5E9)));
   }
 }

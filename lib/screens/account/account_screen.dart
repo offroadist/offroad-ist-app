@@ -73,7 +73,7 @@ class _AccountScreenState extends State<AccountScreen> {
       body: ListView(
         children: [
           Container(
-            color: const Color(0xFF1B5E20),
+            color: const Color(0xFF0EA5E9),
             padding: const EdgeInsets.all(24),
             child: Row(children: [
               CircleAvatar(radius: 32, backgroundColor: Colors.white24, child: Text(name.isNotEmpty ? name[0].toUpperCase() : 'U', style: const TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold))),
